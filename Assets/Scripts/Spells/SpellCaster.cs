@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class SpellCaster : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class SpellCaster : MonoBehaviour
 
     PlayerOrientation playerOrientation;
     PlayerMemory playerMemory;
+
+    bool[] canCastSpell = new bool[] { true, true, true, true };
 
     private void Start()
     {
@@ -17,58 +20,63 @@ public class SpellCaster : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && canCastSpell[0])
         {
-            SelectSpell(0);
+            StartCoroutine(ProcessSelectedSpell(SelectSpell(0)));
         }
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && canCastSpell[1])
         {
-            SelectSpell(1);
+            StartCoroutine(ProcessSelectedSpell(SelectSpell(1)));
         }
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && canCastSpell[2])
         {
-            SelectSpell(2);
+            StartCoroutine(ProcessSelectedSpell(SelectSpell(2)));
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && canCastSpell[3])
         {
-            SelectSpell(3);
+            StartCoroutine(ProcessSelectedSpell(SelectSpell(3)));
         }
-        if (selectedSpell == null) { return; }
-        ProcessSelectedSpell();
     }
 
-    private void SelectSpell(int index)
+    private Spell SelectSpell(int index)
     {
-        selectedSpell = spellsHolder.GetSpell(index);
+        Spell spell = spellsHolder.GetSpell(index);
         // No memory == random spells
         if (playerMemory.GetMemoryPercentage() == 0)
         {
-            selectedSpell = spellsHolder.RandomSpell();
+            spell = spellsHolder.RandomSpell();
         }
+        return spell;
     }
 
-    private void ProcessSelectedSpell()
+    IEnumerator ProcessSelectedSpell(Spell selectedSpell)
     {
-        if (selectedSpell is PhysicalSpell physicalSpell)
+        Spell currentSpell = selectedSpell;
+        canCastSpell[spellsHolder.IndexOf(currentSpell)] = false;
+
+        if (currentSpell is PhysicalSpell physicalSpell)
         {
             Vector3 position = playerOrientation.GetOrientation() * physicalSpell.GetDistance();
             // Instantiate around player
-            Spell instantiatedSpell = Instantiate(selectedSpell, transform.position + position, Quaternion.identity);
+            Spell instantiatedSpell = Instantiate(currentSpell, transform.position + position, Quaternion.identity);
             instantiatedSpell.Launch(playerMemory.GetMemoryPercentage());
         }
-        else if (selectedSpell is TornadoSpell)
+        else if (currentSpell is TornadoSpell)
         {
             // Instantiate at mouse location
-            TornadoSpell instantiatedSpell = (TornadoSpell)Instantiate(selectedSpell, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
+            TornadoSpell instantiatedSpell = (TornadoSpell)Instantiate(currentSpell, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
             instantiatedSpell.Launch(playerMemory.GetMemoryPercentage());
         }
         else // Projectile
         {
             // Instantiate on player + add force
-            ProjectileSpell instantiatedSpell = (ProjectileSpell)Instantiate(selectedSpell, transform.position, Quaternion.identity);
+            ProjectileSpell instantiatedSpell = (ProjectileSpell)Instantiate(currentSpell, transform.position, Quaternion.identity);
             instantiatedSpell.SetOrientation(playerOrientation.GetOrientation());
             instantiatedSpell.Launch(playerMemory.GetMemoryPercentage());
         }
-        selectedSpell = null;
+
+        yield return new WaitForSeconds(currentSpell.timeBetweenCast);
+
+        canCastSpell[spellsHolder.IndexOf(currentSpell)] = true;
     }
 }

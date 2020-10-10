@@ -14,4 +14,9 @@ public class SpellsHolder : MonoBehaviour
     {
         return spells[Random.Range(0, spells.Count)];
     }
+
+    public int IndexOf(Spell spell)
+    {
+        return spells.IndexOf(spell);
+    }
 }
