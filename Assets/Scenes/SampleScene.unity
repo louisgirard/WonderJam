@@ -297,6 +297,7 @@ PrefabInstance:
         type: 3}
       propertyPath: spells.Array.data[3]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: -8328983553156817756, guid: bedc50bdd95c712419162e3cd6eefb96,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d31cfac47d23c14a808dd5427a7cc2c, type: 3}
