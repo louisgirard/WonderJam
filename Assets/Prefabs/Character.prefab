@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 7542050490482676865}
   m_Layer: 0
   m_Name: Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -304,6 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMemory: 10
+  memory: 0
 --- !u!114 &7542050490482676865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,3 +317,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe7b3327953b5348ba1a147e1d8e458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spells:
+  - {fileID: -4913285741721090496, guid: 352651da1435a7c4d87223e603cc25d3, type: 3}
+  - {fileID: -3499369567514531756, guid: 421d5000e2300d54bba339829bf17952, type: 3}
+  - {fileID: 5861621153263707308, guid: 82e4c8856f8636845b5ea0acd84bf409, type: 3}
+  - {fileID: -8328983553156817756, guid: bedc50bdd95c712419162e3cd6eefb96, type: 3}

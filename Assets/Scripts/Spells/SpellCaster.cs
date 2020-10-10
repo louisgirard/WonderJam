@@ -6,10 +6,12 @@ public class SpellCaster : MonoBehaviour
     Spell selectedSpell;
 
     PlayerOrientation playerOrientation;
+    Memory playerMemory;
 
     private void Start()
     {
         playerOrientation = GetComponent<PlayerOrientation>();
+        playerMemory = GetComponent<Memory>();
     }
 
     void Update()
@@ -40,19 +42,21 @@ public class SpellCaster : MonoBehaviour
         {
             Vector3 position = playerOrientation.GetOrientation() * physicalSpell.GetDistance();
             // Instantiate around player
-            Instantiate(selectedSpell, transform.position + position, Quaternion.identity);
+            Spell instantiatedSpell = Instantiate(selectedSpell, transform.position + position, Quaternion.identity);
+            instantiatedSpell.SetEfficacy(playerMemory.GetMemoryPercentage());
         }
-        else if (selectedSpell is FixedSpell)
+        else if (selectedSpell is TornadoSpell)
         {
             // Instantiate at mouse location
-            // TODO add range
-            Instantiate(selectedSpell, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
+            Spell instantiatedSpell = Instantiate(selectedSpell, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
+            instantiatedSpell.SetEfficacy(playerMemory.GetMemoryPercentage());
         }
         else // Projectile
         {
             // Instantiate on player + add force
-            ProjectileSpell spell = (ProjectileSpell)Instantiate(selectedSpell, transform.position, Quaternion.identity);
-            spell.Launch(playerOrientation.GetOrientation());
+            ProjectileSpell instantiatedSpell = (ProjectileSpell)Instantiate(selectedSpell, transform.position, Quaternion.identity);
+            instantiatedSpell.SetEfficacy(playerMemory.GetMemoryPercentage());
+            instantiatedSpell.Launch(playerOrientation.GetOrientation());
         }
         selectedSpell = null;
     }

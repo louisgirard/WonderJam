@@ -2,30 +2,28 @@
 
 public class ProjectileSpell : Spell
 {
-    [SerializeField] float speed = 100f;
-    [SerializeField] ParticleSystem hitParticles;
-    new Rigidbody2D rigidbody;
+    [SerializeField] protected float speed = 100f;
+    [SerializeField] protected ParticleSystem hitParticles;
+    new protected Rigidbody2D rigidbody;
 
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    public void Launch(Vector2 orientation)
-    {
-        rigidbody.AddForce(orientation * speed);
-    }
+    public virtual void Launch(Vector2 orientation) { }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag.Equals("Player") || collision.tag.Equals("Spell")) { return; }
+        if (collision.CompareTag("Player") || collision.CompareTag("Spell")) { return; }
 
         // Explosion
         ParticleSystem explosion = Instantiate(hitParticles, transform.position, Quaternion.identity);
+        explosion.transform.localScale = transform.localScale;
         Destroy(explosion.gameObject, hitParticles.main.duration);
 
         // Damage
-        if (collision.tag.Equals("Enemy"))
+        if (collision.CompareTag("Enemy"))
         {
             Health health = collision.transform.GetComponent<Health>();
             health.TakeDamage(power);

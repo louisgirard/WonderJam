@@ -13,10 +13,10 @@ public class PhysicalSpell : Spell
     {
         Destroy(gameObject, GetComponent<ParticleSystem>().main.duration);
 
-        if (collision.tag.Equals("Player") || collision.tag.Equals("Spell")) { return; }
+        if (collision.CompareTag("Player") || collision.CompareTag("Spell")) { return; }
 
         // Damage
-        if (collision.tag.Equals("Enemy"))
+        if (collision.CompareTag("Enemy"))
         {
             Health health = collision.transform.GetComponent<Health>();
             health.TakeDamage(power);

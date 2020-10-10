@@ -3,16 +3,16 @@
 public class Memory : MonoBehaviour
 {
     [SerializeField] float maxMemory = 10f;
-    float memory;
+    [SerializeField] float memory;
 
     private void Start()
     {
         memory = maxMemory;
     }
 
-    private float GetMemory()
+    public float GetMemoryPercentage()
     {
-        return memory;
+        return (memory / maxMemory) * 100;
     }
 
     public void LoseMemory(float damage)
