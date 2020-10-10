@@ -18,32 +18,36 @@ public class SpellCaster : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            selectedSpell = spells[0];
+            SelectSpell(0);
         }
-        if(Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1))
         {
-            selectedSpell = spells[1];
+            SelectSpell(1);
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            selectedSpell = spells[2];
+            SelectSpell(2);
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            selectedSpell = spells[3];
+            SelectSpell(3);
         }
-        if(selectedSpell == null) { return; }
+        if (selectedSpell == null) { return; }
         ProcessSelectedSpell();
+    }
+
+    private void SelectSpell(int index)
+    {
+        selectedSpell = spells[index];
+        // No memory == random spells
+        if (playerMemory.GetMemoryPercentage() == 0)
+        {
+            selectedSpell = spells[Random.Range(0, spells.Length)];
+        }
     }
 
     private void ProcessSelectedSpell()
     {
-        // No memory == random spells
-        if(playerMemory.GetMemoryPercentage() == 0)
-        {
-            selectedSpell = spells[Random.Range(0, spells.Length)];
-        }
-
         if (selectedSpell is PhysicalSpell physicalSpell)
         {
             Vector3 position = playerOrientation.GetOrientation() * physicalSpell.GetDistance();

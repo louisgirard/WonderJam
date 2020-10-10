@@ -4,6 +4,7 @@ public class LightballSpell : ProjectileSpell
 {
     public override void Launch(float efficacy)
     {
+        print(orientation);
         if (Random.Range(0f, 100f) <= efficacy)
         {
             // Success
@@ -12,7 +13,8 @@ public class LightballSpell : ProjectileSpell
         else
         {
             // Failure, GOES WRONG !!!
-            rigidbody.AddForce(new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)) * speed);
+            Vector2 direction = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+            rigidbody.AddForce(direction * speed);
         }
     }
 }
