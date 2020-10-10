@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class TornadoSpell : Spell
 {
-    [SerializeField] float radius = 2f;
     [SerializeField] float pullForce = 500f;
+    float radius;
 
+    readonly HashSet<string> attractedTags = new HashSet<string>();
     readonly HashSet<Collider2D> totalColliders = new HashSet<Collider2D>();
     List<Collider2D> inRangeColliders = new List<Collider2D>();
     float timeToLive;
@@ -37,18 +38,41 @@ public class TornadoSpell : Spell
         RemoveAttractionForce();
     }
 
+    public void Launch()
+    {
+        if (Random.Range(0f, 100f) <= efficacy)
+        {
+            // Success
+            attractedTags.Add("Enemy");
+            radius = transform.localScale.x / 2;
+        }
+        else
+        {
+            // Failure, GOES WRONG !!!
+            attractedTags.Add("Enemy");
+            attractedTags.Add("Player");
+            float coefficient = Random.Range(2f, 2.5f);
+            transform.localScale *= coefficient;
+            pullForce *= 3f;
+            radius = transform.localScale.x / 2;
+        }
+    }
+
     private void AddAttractionForce()
     {
         foreach (Collider2D collider in inRangeColliders)
         {
-            if (!collider.CompareTag("Enemy")) { continue; }
+            if (!attractedTags.Contains(collider.tag)) { continue; }
 
             ClearForce(collider);
 
             totalColliders.Add(collider);
 
             Vector3 forceDirection = transform.position - collider.transform.position;
-            collider.attachedRigidbody.AddForce(forceDirection.normalized * pullForce * Time.fixedDeltaTime);
+            if(forceDirection.magnitude > 0.01f)
+            {
+                collider.attachedRigidbody.AddForce(forceDirection.normalized * pullForce * Time.fixedDeltaTime);
+            }
         }
     }
 

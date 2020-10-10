@@ -48,8 +48,9 @@ public class SpellCaster : MonoBehaviour
         else if (selectedSpell is TornadoSpell)
         {
             // Instantiate at mouse location
-            Spell instantiatedSpell = Instantiate(selectedSpell, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
+            TornadoSpell instantiatedSpell = (TornadoSpell)Instantiate(selectedSpell, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
             instantiatedSpell.SetEfficacy(playerMemory.GetMemoryPercentage());
+            instantiatedSpell.Launch();
         }
         else // Projectile
         {

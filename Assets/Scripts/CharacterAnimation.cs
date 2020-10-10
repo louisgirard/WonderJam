@@ -3,10 +3,10 @@
 [RequireComponent(typeof(Animator))]
 public class CharacterAnimation : MonoBehaviour
 {
-    string[] idlePositions = { "Idle Down", "Idle Up", "Idle Left", "Idle Right" };
-    string[] walkPositions = { "Walk Down", "Walk Up", "Walk Left", "Walk Right" };
+    string idlePosition = "Idle";
+    string walkPosition = "Walk";
     Animator animator;
-    int direction;
+    bool facingRight = true;
 
     private void Start()
     {
@@ -15,7 +15,19 @@ public class CharacterAnimation : MonoBehaviour
 
     public void SetOrientation(Vector2 mouseDirection)
     {
-        direction = DirectionToIndex(mouseDirection);
+        // If pointing right and looking left or pointing left and looking right
+        if(mouseDirection.x >= 0 && !facingRight || mouseDirection.x <= 0 && facingRight)
+        {
+            Flip();
+        }
+    }
+
+    private void Flip()
+    {
+        facingRight = !facingRight;
+        Vector2 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
     }
 
     // Play animation
@@ -23,11 +35,11 @@ public class CharacterAnimation : MonoBehaviour
     {
         if(moveVector.Equals(Vector2.zero))
         {
-            animator.Play(idlePositions[direction]);
+            animator.Play(idlePosition);
         }
         else
         {
-            animator.Play(walkPositions[direction]);
+            animator.Play(walkPosition);
         }
     }
     
@@ -35,25 +47,14 @@ public class CharacterAnimation : MonoBehaviour
     private int DirectionToIndex(Vector2 direction)
     {
         float x = direction.x;
-        float y = direction.y;
-
+        
         // Right
-        if(x >= 0 && x >= Mathf.Abs(y))
-        {
-            return 3;
-        }
-        // Left
-        if (x <= 0 && -x >= Mathf.Abs(y))
-        {
-            return 2;
-        }
-        // Up
-        if (y >= 0 && y >= Mathf.Abs(x))
+        if(x >= 0)
         {
             return 1;
         }
-        // Down
-        if (y <= 0 && -y >= Mathf.Abs(x))
+        // Left
+        if (x <= 0)
         {
             return 0;
         }
