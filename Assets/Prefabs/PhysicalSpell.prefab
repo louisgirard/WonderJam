@@ -83,6 +83,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 2
+  icon: {fileID: 21300000, guid: 51e57749b8e431e41b2ce25c62ce8b31, type: 3}
   distance: 0.5
   goodParticle: {fileID: 4640304647183921951, guid: 7dbaa55a91373aa4c8db224242547719,
     type: 3}

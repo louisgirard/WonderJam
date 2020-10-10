@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 1854859846}
   - component: {fileID: 1684703338}
   - component: {fileID: 1684703337}
+  - component: {fileID: 135102932217919635}
   - component: {fileID: 7542050490482676865}
   m_Layer: 0
   m_Name: Character
@@ -303,7 +304,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMemory: 10
-  memory: 10
+  timeBetweenLost: 2
+--- !u!114 &135102932217919635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3749985317117988090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 148c03ce05e77ce44b1fccff818a8845, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spells:
+  - {fileID: 5861621153263707308, guid: 82e4c8856f8636845b5ea0acd84bf409, type: 3}
+  - {fileID: -4913285741721090496, guid: 352651da1435a7c4d87223e603cc25d3, type: 3}
+  - {fileID: -3499369567514531756, guid: 421d5000e2300d54bba339829bf17952, type: 3}
+  - {fileID: -8328983553156817756, guid: bedc50bdd95c712419162e3cd6eefb96, type: 3}
 --- !u!114 &7542050490482676865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,8 +334,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe7b3327953b5348ba1a147e1d8e458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spells:
-  - {fileID: -4913285741721090496, guid: 352651da1435a7c4d87223e603cc25d3, type: 3}
-  - {fileID: -3499369567514531756, guid: 421d5000e2300d54bba339829bf17952, type: 3}
-  - {fileID: 5861621153263707308, guid: 82e4c8856f8636845b5ea0acd84bf409, type: 3}
-  - {fileID: -8328983553156817756, guid: bedc50bdd95c712419162e3cd6eefb96, type: 3}

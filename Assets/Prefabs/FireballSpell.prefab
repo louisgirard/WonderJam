@@ -9456,6 +9456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 5
+  icon: {fileID: 21300000, guid: 8277d845c1f2b14459f0204e3343969f, type: 3}
   speed: 100
   hitParticles: {fileID: 1576913845212590945, guid: e0e4c3a05d207284992a9247d4ffa053,
     type: 3}

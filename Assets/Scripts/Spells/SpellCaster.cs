@@ -2,7 +2,7 @@
 
 public class SpellCaster : MonoBehaviour
 {
-    [SerializeField] Spell[] spells;
+    SpellsHolder spellsHolder;
     Spell selectedSpell;
 
     PlayerOrientation playerOrientation;
@@ -10,6 +10,7 @@ public class SpellCaster : MonoBehaviour
 
     private void Start()
     {
+        spellsHolder = GetComponent<SpellsHolder>();
         playerOrientation = GetComponent<PlayerOrientation>();
         playerMemory = GetComponent<PlayerMemory>();
     }
@@ -38,11 +39,11 @@ public class SpellCaster : MonoBehaviour
 
     private void SelectSpell(int index)
     {
-        selectedSpell = spells[index];
+        selectedSpell = spellsHolder.GetSpell(index);
         // No memory == random spells
         if (playerMemory.GetMemoryPercentage() == 0)
         {
-            selectedSpell = spells[Random.Range(0, spells.Length)];
+            selectedSpell = spellsHolder.RandomSpell();
         }
     }
 

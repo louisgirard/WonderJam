@@ -14192,7 +14192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 10
-  efficacy: 100
+  icon: {fileID: 21300000, guid: 70683e9f18b221a41a69a03322768ea3, type: 3}
   speed: 200
   hitParticles: {fileID: 6283826399515983525, guid: f8e3344b79070e0469c2ca20230a7030,
     type: 3}
