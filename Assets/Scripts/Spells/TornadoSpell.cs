@@ -25,7 +25,6 @@ public class TornadoSpell : Spell
             Destroy(gameObject);
             StopAttraction();
         }
-
     }
 
     public void FixedUpdate()
@@ -38,7 +37,7 @@ public class TornadoSpell : Spell
         RemoveAttractionForce();
     }
 
-    public void Launch()
+    public override void Launch(float efficacy)
     {
         if (Random.Range(0f, 100f) <= efficacy)
         {

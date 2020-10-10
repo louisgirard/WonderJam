@@ -2,7 +2,7 @@
 
 public class FireballSpell : ProjectileSpell
 {
-    public override void Launch(Vector2 orientation)
+    public override void Launch(float efficacy)
     {
         rigidbody.AddForce(orientation * speed);
 

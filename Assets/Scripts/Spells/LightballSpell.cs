@@ -2,7 +2,7 @@
 
 public class LightballSpell : ProjectileSpell
 {
-    public override void Launch(Vector2 orientation)
+    public override void Launch(float efficacy)
     {
         if (Random.Range(0f, 100f) <= efficacy)
         {

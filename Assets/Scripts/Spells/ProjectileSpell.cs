@@ -5,13 +5,17 @@ public class ProjectileSpell : Spell
     [SerializeField] protected float speed = 100f;
     [SerializeField] protected ParticleSystem hitParticles;
     new protected Rigidbody2D rigidbody;
+    protected Vector3 orientation;
 
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    public virtual void Launch(Vector2 orientation) { }
+    public void SetOrientation(Vector2 playerOrientation)
+    {
+        orientation = playerOrientation;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -25,7 +29,7 @@ public class ProjectileSpell : Spell
         // Damage
         if (collision.CompareTag("Enemy"))
         {
-            Health health = collision.transform.GetComponent<Health>();
+            EnemyHealth health = collision.transform.GetComponent<EnemyHealth>();
             health.TakeDamage(power);
         }
 

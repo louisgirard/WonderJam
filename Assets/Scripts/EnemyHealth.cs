@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Health : MonoBehaviour
+public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] float maxHealth = 50f;
     float health;
@@ -18,7 +18,7 @@ public class Health : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health = Mathf.Max(health - damage, 0);
-        if(health == 0)
+        if (health == 0)
         {
             print("dead");
         }

@@ -6,12 +6,12 @@ public class SpellCaster : MonoBehaviour
     Spell selectedSpell;
 
     PlayerOrientation playerOrientation;
-    Memory playerMemory;
+    PlayerMemory playerMemory;
 
     private void Start()
     {
         playerOrientation = GetComponent<PlayerOrientation>();
-        playerMemory = GetComponent<Memory>();
+        playerMemory = GetComponent<PlayerMemory>();
     }
 
     void Update()
@@ -38,26 +38,31 @@ public class SpellCaster : MonoBehaviour
 
     private void ProcessSelectedSpell()
     {
+        // No memory == random spells
+        if(playerMemory.GetMemoryPercentage() == 0)
+        {
+            selectedSpell = spells[Random.Range(0, spells.Length)];
+        }
+
         if (selectedSpell is PhysicalSpell physicalSpell)
         {
             Vector3 position = playerOrientation.GetOrientation() * physicalSpell.GetDistance();
             // Instantiate around player
             Spell instantiatedSpell = Instantiate(selectedSpell, transform.position + position, Quaternion.identity);
-            instantiatedSpell.SetEfficacy(playerMemory.GetMemoryPercentage());
+            instantiatedSpell.Launch(playerMemory.GetMemoryPercentage());
         }
         else if (selectedSpell is TornadoSpell)
         {
             // Instantiate at mouse location
             TornadoSpell instantiatedSpell = (TornadoSpell)Instantiate(selectedSpell, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
-            instantiatedSpell.SetEfficacy(playerMemory.GetMemoryPercentage());
-            instantiatedSpell.Launch();
+            instantiatedSpell.Launch(playerMemory.GetMemoryPercentage());
         }
         else // Projectile
         {
             // Instantiate on player + add force
             ProjectileSpell instantiatedSpell = (ProjectileSpell)Instantiate(selectedSpell, transform.position, Quaternion.identity);
-            instantiatedSpell.SetEfficacy(playerMemory.GetMemoryPercentage());
-            instantiatedSpell.Launch(playerOrientation.GetOrientation());
+            instantiatedSpell.SetOrientation(playerOrientation.GetOrientation());
+            instantiatedSpell.Launch(playerMemory.GetMemoryPercentage());
         }
         selectedSpell = null;
     }
