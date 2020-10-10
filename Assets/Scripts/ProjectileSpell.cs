@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class ProjectileSpell : Spell
 {
     [SerializeField] float speed = 100f;
     new Rigidbody2D rigidbody;
@@ -10,8 +10,8 @@ public class Projectile : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    public void Cast(Vector2 mousePosition)
+    public void Launch(Vector2 orientation)
     {
-        rigidbody.AddForce(mousePosition * speed);
+        rigidbody.AddForce(orientation * speed);
     }
 }

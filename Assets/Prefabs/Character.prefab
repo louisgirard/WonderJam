@@ -316,5 +316,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe7b3327953b5348ba1a147e1d8e458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireballPrefab: {fileID: 1024137951343146183, guid: 352651da1435a7c4d87223e603cc25d3,
-    type: 3}

@@ -272,9 +272,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7542050490482676865, guid: 1d31cfac47d23c14a808dd5427a7cc2c,
         type: 3}
-      propertyPath: energyPrefab
-      value: 
-      objectReference: {fileID: 1936188217515965340, guid: 8e96181b8a8da0948afefaedb37978d0,
+      propertyPath: spells.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7542050490482676865, guid: 1d31cfac47d23c14a808dd5427a7cc2c,
         type: 3}
+      propertyPath: spells.Array.data[0]
+      value: 
+      objectReference: {fileID: 1024137951343146183, guid: 352651da1435a7c4d87223e603cc25d3,
+        type: 3}
+    - target: {fileID: 7542050490482676865, guid: 1d31cfac47d23c14a808dd5427a7cc2c,
+        type: 3}
+      propertyPath: spells.Array.data[1]
+      value: 
+      objectReference: {fileID: -5874374783040816987, guid: 421d5000e2300d54bba339829bf17952,
+        type: 3}
+    - target: {fileID: 7542050490482676865, guid: 1d31cfac47d23c14a808dd5427a7cc2c,
+        type: 3}
+      propertyPath: spells.Array.data[2]
+      value: 
+      objectReference: {fileID: 5861621153263707308, guid: 82e4c8856f8636845b5ea0acd84bf409,
+        type: 3}
+    - target: {fileID: 7542050490482676865, guid: 1d31cfac47d23c14a808dd5427a7cc2c,
+        type: 3}
+      propertyPath: spells.Array.data[3]
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d31cfac47d23c14a808dd5427a7cc2c, type: 3}
