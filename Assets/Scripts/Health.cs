@@ -20,7 +20,7 @@ public class Health : MonoBehaviour
         health = Mathf.Max(health - damage, 0);
         if(health == 0)
         {
-            print("hero dead");
+            print("dead");
         }
         print("health = " + health);
     }

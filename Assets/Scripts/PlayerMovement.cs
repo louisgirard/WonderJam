@@ -21,7 +21,8 @@ public class PlayerMovement : MonoBehaviour
         Vector2 moveVector = new Vector2(xInput, yInput).normalized;
 
         // Update Position
-        rigidbody.MovePosition(rigidbody.position + moveVector * speed * Time.deltaTime);
+        if(!moveVector.Equals(Vector2.zero))
+            rigidbody.MovePosition(rigidbody.position + moveVector * speed * Time.fixedDeltaTime);
 
         // Update Animation
         playerAnimation.Move(moveVector);

@@ -4741,7 +4741,7 @@ GameObject:
   - component: {fileID: -8328983553156817756}
   m_Layer: 0
   m_Name: TornadoSpell
-  m_TagString: Untagged
+  m_TagString: Spell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4755,7 +4755,7 @@ Transform:
   m_GameObject: {fileID: 7144115694035498103}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -17.585, y: 0.974, z: -5.592}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 7144115694035069009}
   m_Father: {fileID: 0}
@@ -4769,7 +4769,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7144115694035498103}
   serializedVersion: 6
-  lengthInSec: 4
+  lengthInSec: 4.3
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 3
@@ -9486,4 +9486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdfcf982a53b7144fa18be76e1a05db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 5
+  power: 15
+  distanceToPlayer: 6
+  radius: 1
+  pullForce: 50

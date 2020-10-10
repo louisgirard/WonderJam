@@ -4713,9 +4713,10 @@ GameObject:
   - component: {fileID: 8661519861307022689}
   - component: {fileID: 1024137951343146183}
   - component: {fileID: 4341236279416296612}
+  - component: {fileID: 7533393629770591494}
   m_Layer: 0
   m_Name: FireballSpell
-  m_TagString: Untagged
+  m_TagString: Spell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4729,7 +4730,7 @@ Transform:
   m_GameObject: {fileID: 4796256596536129187}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8, y: 1, z: -6}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
   - {fileID: 4796256596536552069}
   - {fileID: 4796256596536552071}
@@ -9374,7 +9375,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59f68c5ecdc58a84da1d114e3b442309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  power: 5
   speed: 100
+  hitParticles: {fileID: 1576913845212590945, guid: e0e4c3a05d207284992a9247d4ffa053,
+    type: 3}
 --- !u!199 &4341236279416296612
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -9439,6 +9443,22 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!58 &7533393629770591494
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4796256596536129187}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.0048021227}
+  serializedVersion: 2
+  m_Radius: 0.2605576
 --- !u!1 &4796256596536129189
 GameObject:
   m_ObjectHideFlags: 0
