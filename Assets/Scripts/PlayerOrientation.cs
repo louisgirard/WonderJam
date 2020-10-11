@@ -1,19 +1,18 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(CharacterAnimation))]
+[RequireComponent(typeof(Animator))]
 public class PlayerOrientation : MonoBehaviour
 {
-    CharacterAnimation playerAnimation;
-
-    void Start()
-    {
-        playerAnimation = GetComponent<CharacterAnimation>();
-    }
+    bool facingRight = true;
 
     void Update()
     {
-        // Set orientation
-        playerAnimation.SetOrientation(GetOrientation());
+        Vector2 mouseDirection = GetOrientation();
+        // If pointing right and looking left or pointing left and looking right
+        if (mouseDirection.x >= 0 && !facingRight || mouseDirection.x < 0 && facingRight)
+        {
+            Flip();
+        }
     }
 
     public Vector2 GetOrientation()
@@ -25,5 +24,13 @@ public class PlayerOrientation : MonoBehaviour
         mousePosition.y -= Screen.height / 2;
 
         return new Vector2(mousePosition.x, mousePosition.y).normalized;
+    }
+
+    private void Flip()
+    {
+        facingRight = !facingRight;
+        Vector2 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
     }
 }

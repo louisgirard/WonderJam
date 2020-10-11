@@ -8,21 +8,26 @@ public class PhysicalSpell : Spell
 
     new ParticleSystem particleSystem;
 
-    public override void Launch(float efficacy)
+    public override bool Launch(float efficacy)
     {
+        bool success;
         if (Random.Range(0f, 100f) <= efficacy)
         {
             particleSystem = goodParticle;
+            success = true;
         }
         else
         {
             // Failure, GOES WRONG !!!
             particleSystem = wrongParticle;
             power *= -1f;
+            success = false;
         }
         Instantiate(particleSystem, transform.position, Quaternion.identity, transform);
 
         Destroy(gameObject, particleSystem.main.duration);
+
+        return success;
     }
 
     public float GetDistance()

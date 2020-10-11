@@ -1,17 +1,17 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(CharacterAnimation))]
+[RequireComponent(typeof(Animator))]
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float speed = 2f;
     float xInput, yInput;
     new Rigidbody2D rigidbody;
-    CharacterAnimation playerAnimation;
+    Animator playerAnimator;
 
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
-        playerAnimation = GetComponent<CharacterAnimation>();
+        playerAnimator = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -21,10 +21,14 @@ public class PlayerMovement : MonoBehaviour
         Vector2 moveVector = new Vector2(xInput, yInput).normalized;
 
         // Update Position
-        if(!moveVector.Equals(Vector2.zero))
+        if (!moveVector.Equals(Vector2.zero))
+        {
             rigidbody.MovePosition(rigidbody.position + moveVector * speed * Time.fixedDeltaTime);
-
-        // Update Animation
-        playerAnimation.Move(moveVector);
+            playerAnimator.SetTrigger("walk");
+        }
+        else
+        {
+            playerAnimator.SetTrigger("stopWalk");
+        }
     }
 }

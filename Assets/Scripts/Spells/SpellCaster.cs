@@ -7,6 +7,7 @@ public class SpellCaster : MonoBehaviour
 
     PlayerOrientation playerOrientation;
     PlayerMemory playerMemory;
+    Animator playerAnimator;
 
     bool[] canCastSpell = new bool[] { true, true, true, true };
 
@@ -15,6 +16,7 @@ public class SpellCaster : MonoBehaviour
         spellsHolder = GetComponent<SpellsHolder>();
         playerOrientation = GetComponent<PlayerOrientation>();
         playerMemory = GetComponent<PlayerMemory>();
+        playerAnimator = GetComponent<Animator>();
     }
 
     void Update()
@@ -68,27 +70,32 @@ public class SpellCaster : MonoBehaviour
     {
         Spell currentSpell = selectedSpell;
         canCastSpell[spellsHolder.IndexOf(currentSpell)] = false;
+        bool spellSucceeded;
 
         if (currentSpell is PhysicalSpell physicalSpell)
         {
             Vector3 position = playerOrientation.GetOrientation() * physicalSpell.GetDistance();
             // Instantiate around player
             Spell instantiatedSpell = Instantiate(currentSpell, transform.position + position, Quaternion.identity);
-            instantiatedSpell.Launch(playerMemory.GetMemoryPercentage());
+            spellSucceeded = instantiatedSpell.Launch(playerMemory.GetMemoryPercentage());
         }
         else if (currentSpell is TornadoSpell)
         {
             // Instantiate at mouse location
             TornadoSpell instantiatedSpell = (TornadoSpell)Instantiate(currentSpell, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
-            instantiatedSpell.Launch(playerMemory.GetMemoryPercentage());
+            spellSucceeded = instantiatedSpell.Launch(playerMemory.GetMemoryPercentage());
         }
         else // Projectile
         {
             // Instantiate on player + add force
             ProjectileSpell instantiatedSpell = (ProjectileSpell)Instantiate(currentSpell, transform.position, Quaternion.identity);
             instantiatedSpell.SetOrientation(playerOrientation.GetOrientation());
-            instantiatedSpell.Launch(playerMemory.GetMemoryPercentage());
+            spellSucceeded = instantiatedSpell.Launch(playerMemory.GetMemoryPercentage());
         }
+
+        // Update animation
+        playerAnimator.SetBool("wrong", !spellSucceeded);
+        playerAnimator.SetTrigger("attack");
 
         yield return new WaitForSeconds(currentSpell.timeBetweenCast);
 

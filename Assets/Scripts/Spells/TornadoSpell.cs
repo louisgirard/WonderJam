@@ -37,13 +37,14 @@ public class TornadoSpell : Spell
         RemoveAttractionForce();
     }
 
-    public override void Launch(float efficacy)
+    public override bool Launch(float efficacy)
     {
         if (Random.Range(0f, 100f) <= efficacy)
         {
             // Success
             attractedTags.Add("Enemy");
             radius = transform.localScale.x / 2;
+            return true;
         }
         else
         {
@@ -54,6 +55,7 @@ public class TornadoSpell : Spell
             transform.localScale *= coefficient;
             pullForce *= 3f;
             radius = transform.localScale.x / 2;
+            return false;
         }
     }
 

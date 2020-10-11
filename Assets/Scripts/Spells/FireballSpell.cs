@@ -2,7 +2,7 @@
 
 public class FireballSpell : ProjectileSpell
 {
-    public override void Launch(float efficacy)
+    public override bool Launch(float efficacy)
     {
         rigidbody.AddForce(orientation * speed);
 
@@ -12,6 +12,11 @@ public class FireballSpell : ProjectileSpell
             float coefficient = Random.Range(0f, 1f);
             transform.localScale *= coefficient;
             power *= coefficient;
+            return false;
+        }
+        else
+        {
+            return true;
         }
     }
 }

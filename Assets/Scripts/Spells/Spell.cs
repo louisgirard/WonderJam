@@ -6,5 +6,5 @@ public abstract class Spell : MonoBehaviour
     public float timeBetweenCast = 1f;
     public Sprite icon;
 
-    public virtual void Launch(float efficacy) { }
+    public virtual bool Launch(float efficacy) { return true; }
 }
