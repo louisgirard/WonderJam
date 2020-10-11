@@ -25,8 +25,8 @@ public class EnemyAI : MonoBehaviour {
 				targetPositionOld = (Vector2)target.position;
 
 				path = Pathfinding.RequestPath (transform.position, target.position);
-				StopCoroutine (FollowPath());
-				StartCoroutine (FollowPath());
+				StopCoroutine ("FollowPath");
+				StartCoroutine ("FollowPath");
 			}
 
 			yield return new WaitForSeconds (.25f);
