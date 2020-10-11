@@ -4,10 +4,10 @@ using UnityEngine;
 public class SpellCaster : MonoBehaviour
 {
     SpellsHolder spellsHolder;
-    Spell selectedSpell;
 
     PlayerOrientation playerOrientation;
     PlayerMemory playerMemory;
+    Animator playerAnimator;
 
     bool[] canCastSpell = new bool[] { true, true, true, true };
 
@@ -16,6 +16,7 @@ public class SpellCaster : MonoBehaviour
         spellsHolder = GetComponent<SpellsHolder>();
         playerOrientation = GetComponent<PlayerOrientation>();
         playerMemory = GetComponent<PlayerMemory>();
+        playerAnimator = GetComponent<Animator>();
     }
 
     void Update()
@@ -74,6 +75,7 @@ public class SpellCaster : MonoBehaviour
             instantiatedSpell.SetOrientation(playerOrientation.GetOrientation());
             instantiatedSpell.Launch(playerMemory.GetMemoryPercentage());
         }
+        playerAnimator.Play("Attack");
 
         yield return new WaitForSeconds(currentSpell.timeBetweenCast);
 

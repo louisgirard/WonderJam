@@ -6,7 +6,7 @@ public class SliderBar : MonoBehaviour
     Slider slider;
     Text text;
 
-    void Start()
+    void Awake()
     {
         slider = GetComponent<Slider>();
         text = GetComponentInChildren<Text>();

@@ -42,22 +42,4 @@ public class CharacterAnimation : MonoBehaviour
             animator.Play(walkPosition);
         }
     }
-    
-    // Returns a direction index depending on a direction (mouse position, joystick)
-    private int DirectionToIndex(Vector2 direction)
-    {
-        float x = direction.x;
-        
-        // Right
-        if(x >= 0)
-        {
-            return 1;
-        }
-        // Left
-        if (x <= 0)
-        {
-            return 0;
-        }
-        return -1;
-    }
 }
