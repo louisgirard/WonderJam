@@ -23,10 +23,6 @@ public class TornadoSpell : Spell
         {
             Destroy(gameObject);
         }
-    }
-
-    public void FixedUpdate()
-    {
         AddAttractionForce();
     }
 
@@ -59,11 +55,10 @@ public class TornadoSpell : Spell
         {
             if (!attractedTags.Contains(collider.tag)) { continue; }
 
-            Vector2 forceDirection = transform.position - collider.transform.position;
+            Vector3 forceDirection = transform.position - collider.transform.position;
             if(forceDirection.magnitude > 0.01f)
             {
-                Rigidbody2D rb = collider.attachedRigidbody;
-                rb.MovePosition(rb.position + forceDirection.normalized * pullForce * Time.fixedDeltaTime);
+                collider.transform.position = collider.transform.position + forceDirection.normalized * pullForce * Time.deltaTime;
             }
         }
     }
