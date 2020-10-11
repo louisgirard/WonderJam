@@ -20,7 +20,6 @@ public class SpellIcon : MonoBehaviour
         }
         else if (disabled)
         {
-            print("disable " + spell);
             icon.sprite = spell.icon;
             icon.color = new Color(0.4f,0.4f,0.4f);
         }
