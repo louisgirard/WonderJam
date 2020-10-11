@@ -16,7 +16,7 @@ public class CharacterAnimation : MonoBehaviour
     public void SetOrientation(Vector2 mouseDirection)
     {
         // If pointing right and looking left or pointing left and looking right
-        if(mouseDirection.x >= 0 && !facingRight || mouseDirection.x <= 0 && facingRight)
+        if(mouseDirection.x >= 0 && !facingRight || mouseDirection.x < 0 && facingRight)
         {
             Flip();
         }
