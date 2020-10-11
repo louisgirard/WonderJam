@@ -3,7 +3,7 @@
 public class HealthPotion : MonoBehaviour
 {
     [SerializeField] float health = 10f;
-    [SerializeField] ParticleSystem animationParticles;
+    [SerializeField] ParticleSystem animationParticles = null;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

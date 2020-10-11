@@ -9489,4 +9489,4 @@ MonoBehaviour:
   power: 15
   timeBetweenCast: 5
   icon: {fileID: 21300000, guid: 5fce8e3913b883c4dad1e263fd2b9fc0, type: 3}
-  pullForce: 1000
+  pullForce: 0.1

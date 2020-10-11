@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SpellsHolder : MonoBehaviour
 {
-    [SerializeField] List<Spell> spells;
+    [SerializeField] List<Spell> spells = null;
 
     public Spell GetSpell(int index)
     {

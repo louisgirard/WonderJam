@@ -3,8 +3,8 @@
 public class PhysicalSpell : Spell
 {
     [SerializeField] float distance = 0.5f;
-    [SerializeField] ParticleSystem goodParticle;
-    [SerializeField] ParticleSystem wrongParticle;
+    [SerializeField] ParticleSystem goodParticle = null;
+    [SerializeField] ParticleSystem wrongParticle = null;
 
     new ParticleSystem particleSystem;
 

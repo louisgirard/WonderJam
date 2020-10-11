@@ -2,7 +2,7 @@
 
 public class SpellIcons : MonoBehaviour
 {
-    [SerializeField] SpellIcon[] icons;
+    [SerializeField] SpellIcon[] icons = null;
     readonly bool[] disabledIcons = new bool[] { false, false, false, false };
     SpellsHolder spellsHolder;
 

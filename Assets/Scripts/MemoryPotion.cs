@@ -3,7 +3,7 @@
 public class MemoryPotion : MonoBehaviour
 {
     [SerializeField] float memory = 1f;
-    [SerializeField] ParticleSystem animationParticles;
+    [SerializeField] ParticleSystem animationParticles = null;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

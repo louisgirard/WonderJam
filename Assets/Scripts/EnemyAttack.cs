@@ -2,7 +2,7 @@
 
 public class EnemyAttack : MonoBehaviour
 {
-    [SerializeField] float range = 1f;
+    [SerializeField] float range = 0.5f;
     [SerializeField] float power = 5f;
     [SerializeField] float timeBetweenAttacks = 1f;
 

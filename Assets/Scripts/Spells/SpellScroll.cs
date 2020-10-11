@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class SpellScroll : MonoBehaviour
 {
-    [SerializeField] Spell spell;
-    [SerializeField] ParticleSystem animationParticles;
+    [SerializeField] Spell spell = null;
+    [SerializeField] ParticleSystem animationParticles = null;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
