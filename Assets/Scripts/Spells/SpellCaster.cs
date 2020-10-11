@@ -21,19 +21,35 @@ public class SpellCaster : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && canCastSpell[0])
         {
-            StartCoroutine(ProcessSelectedSpell(SelectSpell(0)));
+            Spell selectedSpell = SelectSpell(0);
+            if(selectedSpell != null)
+            {
+                StartCoroutine(ProcessSelectedSpell(selectedSpell));
+            }
         }
         if (Input.GetMouseButtonDown(1) && canCastSpell[1])
         {
-            StartCoroutine(ProcessSelectedSpell(SelectSpell(1)));
+            Spell selectedSpell = SelectSpell(1);
+            if (selectedSpell != null)
+            {
+                StartCoroutine(ProcessSelectedSpell(selectedSpell));
+            }
         }
         if (Input.GetKeyDown(KeyCode.Q) && canCastSpell[2])
         {
-            StartCoroutine(ProcessSelectedSpell(SelectSpell(2)));
+            Spell selectedSpell = SelectSpell(2);
+            if (selectedSpell != null)
+            {
+                StartCoroutine(ProcessSelectedSpell(selectedSpell));
+            }
         }
         if (Input.GetKeyDown(KeyCode.E) && canCastSpell[3])
         {
-            StartCoroutine(ProcessSelectedSpell(SelectSpell(3)));
+            Spell selectedSpell = SelectSpell(3);
+            if (selectedSpell != null)
+            {
+                StartCoroutine(ProcessSelectedSpell(selectedSpell));
+            }
         }
     }
 

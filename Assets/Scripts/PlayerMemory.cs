@@ -37,4 +37,15 @@ public class PlayerMemory : MonoBehaviour
         memory = Mathf.Max(memory - 1f, 0);
         memoryBar.UpdateSlider(memory, maxMemory);
     }
+
+    public bool CanHeal()
+    {
+        return memory != maxMemory;
+    }
+
+    public void Heal(float points)
+    {
+        memory = Mathf.Min(memory + points, maxMemory);
+        memoryBar.UpdateSlider(memory, maxMemory);
+    }
 }

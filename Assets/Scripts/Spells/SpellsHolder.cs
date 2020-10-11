@@ -7,7 +7,14 @@ public class SpellsHolder : MonoBehaviour
 
     public Spell GetSpell(int index)
     {
-        return spells[index];
+        if(index >= spells.Count)
+        {
+            return null;
+        }
+        else
+        {
+            return spells[index];
+        }
     }
 
     public Spell RandomSpell()
@@ -18,5 +25,15 @@ public class SpellsHolder : MonoBehaviour
     public int IndexOf(Spell spell)
     {
         return spells.IndexOf(spell);
+    }
+
+    public bool CanLearn(Spell spell)
+    {
+        return !spells.Contains(spell);
+    }
+
+    public void LearnSpell(Spell spell)
+    {
+        spells.Add(spell);
     }
 }

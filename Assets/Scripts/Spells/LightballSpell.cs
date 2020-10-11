@@ -4,7 +4,6 @@ public class LightballSpell : ProjectileSpell
 {
     public override void Launch(float efficacy)
     {
-        print(orientation);
         if (Random.Range(0f, 100f) <= efficacy)
         {
             // Success

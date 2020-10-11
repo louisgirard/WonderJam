@@ -23,4 +23,15 @@ public class PlayerHealth : MonoBehaviour
         }
         print("health = " + health);
     }
+
+    public bool CanHeal()
+    {
+        return health != maxHealth;
+    }
+
+    public void Heal(float points)
+    {
+        health = Mathf.Min(health + points, maxHealth);
+        healthBar.UpdateSlider(health, maxHealth);
+    }
 }

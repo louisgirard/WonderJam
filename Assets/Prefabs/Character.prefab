@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 3749985317117988088}
   - component: {fileID: 3749985317117988091}
   - component: {fileID: 3749985317117988071}
-  - component: {fileID: 1869529640102543977}
+  - component: {fileID: 5704884211856506541}
   - component: {fileID: 3749985317117988068}
   - component: {fileID: 3749985317117988089}
   - component: {fileID: 671217834}
@@ -196,7 +196,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &1869529640102543977
+--- !u!61 &5704884211856506541
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -209,7 +209,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.06635201, y: -0.059729278}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -220,7 +220,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.25, y: 0.32}
+  m_Size: {x: 2.7033966, y: 3.3212595}
   m_EdgeRadius: 0
 --- !u!95 &3749985317117988068
 Animator:
@@ -317,11 +317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 148c03ce05e77ce44b1fccff818a8845, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spells:
-  - {fileID: 5861621153263707308, guid: 82e4c8856f8636845b5ea0acd84bf409, type: 3}
-  - {fileID: -4913285741721090496, guid: 352651da1435a7c4d87223e603cc25d3, type: 3}
-  - {fileID: -3499369567514531756, guid: 421d5000e2300d54bba339829bf17952, type: 3}
-  - {fileID: -8328983553156817756, guid: bedc50bdd95c712419162e3cd6eefb96, type: 3}
+  spells: []
 --- !u!114 &7542050490482676865
 MonoBehaviour:
   m_ObjectHideFlags: 0
