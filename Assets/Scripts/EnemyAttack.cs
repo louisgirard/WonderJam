@@ -32,9 +32,27 @@ public class EnemyAttack : MonoBehaviour
     {
         if (timeSinceLastAttack >= timeBetweenAttacks)
         {
+            FaceTarget();
             animator.SetTrigger("attack");
-            player.TakeDamage(power);
             timeSinceLastAttack = 0;
         }
+    }
+
+    private void FaceTarget()
+    {
+        Vector2 direction = (player.transform.position - transform.position).normalized;
+        bool facingRight = transform.localScale.x >= 0;
+        if (facingRight && direction.x < 0 || !facingRight && direction.x >= 0)
+        {
+            Vector2 scale = transform.localScale;
+            scale.x *= -1;
+            transform.localScale = scale;
+        }
+    }
+
+    // Event in animation
+    private void HitEvent()
+    {
+        player.TakeDamage(power);
     }
 }

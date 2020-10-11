@@ -20,8 +20,7 @@ public class EnemyHealth : MonoBehaviour
         health = Mathf.Max(health - damage, 0);
         if (health == 0)
         {
-            print("dead");
+            Destroy(gameObject);
         }
-        print("health = " + health);
     }
 }
