@@ -15,6 +15,11 @@ public class SpellIcons : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(spellsHolder == null)
+        {
+            spellsHolder = FindObjectOfType<SpellsHolder>();
+        }
+
         for(int i = 0; i < icons.Length; i++)
         {
             icons[i].UpdateIcon(spellsHolder.GetSpell(i), disabledIcons[i]);

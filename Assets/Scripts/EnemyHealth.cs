@@ -8,6 +8,7 @@ public class EnemyHealth : MonoBehaviour
     private void Start()
     {
         health = maxHealth;
+        GameManager.m_instance.AddEnemy(this);
     }
 
     private float GetHealth()
@@ -21,6 +22,7 @@ public class EnemyHealth : MonoBehaviour
         if (health == 0)
         {
             Destroy(gameObject);
+            GameManager.m_instance.RemoveEnemy(this);
         }
     }
 }

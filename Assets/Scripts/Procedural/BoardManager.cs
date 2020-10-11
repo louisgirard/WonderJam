@@ -61,18 +61,32 @@ public class BoardManager : MonoBehaviour
     public GameObject m_exitSprite_base;
     public GameObject m_exitSprite_open;
     //public GameObject m_exitSecondSprite;
-    public GameObject m_objet;
-    public GameObject m_player;
-    public EnnemiAI m_ennemi;
-    public static List<List<A_Star.Node>> m_grid;
+    public GameObject[] m_objects;
     private Vector2 m_exit_position;
+    public GameObject[] m_enemies;
+    private GameObject m_player;
+    private GameObject m_exit_door;
 
+    GameObject environment;
+
+    private void Start()
+    {
+        environment = GameObject.Find("Environment");
+    }
+
+    private void Update()
+    {
+        Vector2 exit_position = new Vector2(m_exit_position.x, m_exit_position.y);
+        if(Vector2.Distance(exit_position, m_player.transform.position) <= 1f)
+        {
+            GameManager.m_instance.LoadNextLevel();
+        }
+    }
 
     //TODO : Ajout des portes + fenetre
 
     //Positions des cases pouvant etre utilisées pour placer un element => impossible de mettre deux elemeents sur la meme case
     private static List<Vector2> m_gridPositions = new List<Vector2>();
-    private Dictionary<Vector2, bool> m_nonWalkableList = new Dictionary<Vector2, bool>();
     //private BasicDonjon m_basicDonjonScript;
     
     //Initialisation de la liste des obstacles
@@ -83,7 +97,7 @@ public class BoardManager : MonoBehaviour
     }
 
     //Nettoie la liste
-    void initialiseList()
+    void InitialiseList()
     {
         m_gridPositions.Clear();
         for(int c= 1 ; c < m_numberColumns -1 ; c++ )
@@ -96,64 +110,53 @@ public class BoardManager : MonoBehaviour
     }
 
     //TODO : fonction qui retourne le code dans wallsprites
-    private void setUp()
+    private void SetUp()
     {
         Debug.Log("setup");
         for (int x = -1; x <m_numberColumns+1; x++)
         {
             for (int y = -1; y < m_numberRows +1; y++)
             {
-                int v_temp = 0;
                 //Prepare l'instanciation d'un sprite floor
                 GameObject to_inst = m_floorsSprite[Random.Range(0,m_floorsSprite.Length)];
                 //On regarde si la possition n'est pas un bord de map
                 if (x == -1 || x == m_numberColumns || y ==  -1 || y == m_numberRows)
                 {
-                    v_temp = 1;
                     if(x == -1 && y == m_numberRows)// Corner TL
                     {
                         to_inst = m_wallCornerSprite[0];
-                        m_nonWalkableList.Add(new Vector2(x, y), false);
                     }
                     else if (x ==  -1 && y == -1)// Corner DL
                     {
                         to_inst = m_wallCornerSprite[2];
-                        m_nonWalkableList.Add(new Vector2(x, y), false);
                     }
                     else if (x == m_numberColumns && y == m_numberRows)//Corner TR
                     {
                         to_inst = m_wallCornerSprite[1];
-                        m_nonWalkableList.Add(new Vector2(x, y), false);
                     }
                     else if (x == m_numberColumns && y == -1)//Corner DR 
                     {
                         to_inst = m_wallCornerSprite[3];
-                        m_nonWalkableList.Add(new Vector2(x, y), false);
                     }
                     else if (x == - 1) //left
                     {
                         to_inst = m_wallSprite[2];
-                        m_nonWalkableList.Add(new Vector2(x, y), false);
                     }
                     else if(y ==- 1) //down
                     {
                         to_inst = m_wallSprite[3];
-                        m_nonWalkableList.Add(new Vector2(x, y), false);
                     }
                     else if(y == m_numberRows) // top
                     {
                         to_inst = m_wallSprite[0];
-                        m_nonWalkableList.Add(new Vector2(x, y), false);
                     }     
                     else if(x == m_numberColumns)
                     {
                         to_inst = m_wallSprite[1];
-                        m_nonWalkableList.Add(new Vector2(x, y), false);
                     }
                     
                 }
-                GameObject inst = Instantiate(to_inst, new Vector2(x, y), Quaternion.identity) as GameObject;
-                //m_basicDonjonScript.SetValue(new Vector2(x, y),v_temp);
+                Instantiate(to_inst, new Vector2(x, y), Quaternion.identity, environment.transform);
             }
         }
         Debug.Log("setup done !");
@@ -167,118 +170,90 @@ public class BoardManager : MonoBehaviour
         {
             m_gridPositions.RemoveAt(randomIndex);
             //m_basicDonjonScript.SetValue(randomPosition, 1);
-            m_nonWalkableList.Add(randomPosition, false);
         }
         return randomPosition;
     }
 
-    private void DisplayOjectAtRandomPosition(GameObject[] spritesToDisplay, Count count)
+    private void DisplayObjectAtRandomPosition(GameObject[] spritesToDisplay, Count count)
     {
         int numberOfObjectToDisplay = Random.Range(count.min, count.max);
         for(int i=0; i< numberOfObjectToDisplay; i++)
         {
             GameObject inst = spritesToDisplay[Random.Range(0, spritesToDisplay.Length)];
-            bool to_remove = false;
-            if (inst.CompareTag("Obstacle"))
-                to_remove = true;
+            bool to_remove = true;
             Vector2 v_temp = GetRandomPosition(to_remove);
-            Instantiate(inst, v_temp, Quaternion.identity);
+            Instantiate(inst, v_temp, Quaternion.identity, environment.transform);
         }
     }
 
     
-    public void setupScene (int level)
+    public void SetupScene (int level, GameObject player)
     {
+        // destroy previous scene
+        DestroyPreviousScene();
         //m_basicDonjonScript = new BasicDonjon(m_numberColumns, m_numberRows);
-        setUp();
+        SetUp();
         //m_basicDonjonScript.toString();
-        initialiseList();
-        DisplayOjectAtRandomPosition(m_obstaclesSprites, new Count(5, 9));
-        //m_basicDonjonScript.toString();
-        int ennemiCount = (int)Mathf.Log(level, 2f);
-        //DisplayOjectAtRandomPosition(m_ennemiSprites, new Count(ennemiCount, ennemiCount));
+        InitialiseList();
+        // Obstacles
+        DisplayObjectAtRandomPosition(m_obstaclesSprites, new Count(5, 9));
+        // Objects
+        DisplayObjectAtRandomPosition(m_objects, new Count(1, 2));
+        // Enemies
+        int ennemiCount = 2 + (int)Mathf.Log(level, 2f);
+        DisplayObjectAtRandomPosition(m_enemies, new Count(ennemiCount, ennemiCount));
 
         //Instanciation de l'entrée
         int entry_x = Random.Range(1, m_numberColumns - 2);
-        int entry_y =  - 1;
-        Debug.Log("spawn : " + entry_x + " y : " + entry_y);
-        m_player.transform.Translate(new Vector2(entry_x, entry_y));
-        
-        Instantiate(
-            m_entrySprite, 
-            new Vector2(
-                   entry_x, 
-                   entry_y
-                    ), 
-            Quaternion.identity
-            );
+        int entry_y = -1;
+        //m_player.transform.Translate(new Vector2(entry_x, entry_y));
+
+        Instantiate(m_entrySprite, new Vector2(entry_x, entry_y), Quaternion.identity, environment.transform);
 
         //Instanciation du joueur
-        Instantiate(
-            m_player,
-            new Vector2(
-                   entry_x,
-                   entry_y + 1
-                    ),
-            Quaternion.identity
-            );
+        if (level == 1)
+        {
+            m_player = Instantiate(
+                player,
+                new Vector2(
+                       entry_x,
+                       entry_y + 1
+                        ),
+                Quaternion.identity
+                );
+        }
+        else
+        {
+            m_player.transform.position = new Vector2(entry_x, entry_y + 1);
+        }
 
         //Instanciation de la sortie
         m_exit_position = new Vector2(Random.Range(
                      1, m_numberColumns - 2), m_numberRows);
-        Instantiate(
-            m_exitSprite_base, 
-            new Vector2(m_exit_position.x,m_exit_position.y), 
-            Quaternion.identity);
+        m_exit_door = Instantiate(
+            m_exitSprite_base,
+            new Vector2(m_exit_position.x, m_exit_position.y),
+            Quaternion.identity,
+            environment.transform);
 
-        m_grid = ConstructGrid();
     }
 
+    private void DestroyPreviousScene()
+    {
+        foreach (Transform child in environment.transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
 
     public void OpenDoor()
     {
+        Destroy(m_exit_door);
         Instantiate(
             m_exitSprite_open,
             new Vector2(m_exit_position.x, m_exit_position.y),
-            Quaternion.identity);
-    }
-    /*private void FindPath()
-    {
-        Vector2 target = new Vector2(4, 4);
-        A_Star.Astar _a = new A_Star.Astar(ConstructGrid());
-        Vector2 start = new Vector2(0, 0);
-        Debug.Log("Start :" + start);
-        Debug.Log("Target :" + target);
-        Stack<A_Star.Node> l =_a.FindPath(start, target);
-        foreach(A_Star.Node n in l)
-        {
-            Debug.Log("chemin passe par :" + n.Position);
-        }
-        
-    }*/
-
-    private List<List<A_Star.Node>> ConstructGrid()
-    {
-        List<List<A_Star.Node>> l_temp = new List<List<A_Star.Node>>();
-        bool walkable = false;
-
-        for(int i=0; i < m_numberColumns;i++)
-        {
-            l_temp.Add(new List<A_Star.Node>());
-            for(int j=0;j<m_numberRows;j++)
-            {
-                if (m_nonWalkableList.TryGetValue(new Vector2(i, j), out walkable))
-                {
-                    walkable = false;
-                }
-                else
-                {
-                    walkable = true;
-                }
-                l_temp[i].Add(new A_Star.Node(new Vector2(i, j), walkable));
-            }
-        }
-        return l_temp;
+            Quaternion.identity,
+            environment.transform);
     }
 
 }

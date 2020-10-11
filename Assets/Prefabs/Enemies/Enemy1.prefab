@@ -103,6 +103,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4842385618580332457, guid: fefd59dde53524b47b414baec8a1343e,
+        type: 3}
+      propertyPath: maxHealth
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6192747447003515082, guid: fefd59dde53524b47b414baec8a1343e,
         type: 3}
       propertyPath: m_Offset.x

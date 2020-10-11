@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5112262841821577676}
   - component: {fileID: 7808173587995977095}
-  m_Layer: 0
+  - component: {fileID: 1681037777906013539}
+  m_Layer: 8
   m_Name: Obstacle_3
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -67,8 +68,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -891406215
+  m_SortingLayer: -1
   m_SortingOrder: 1
   m_Sprite: {fileID: -8128948591794121423, guid: 84a46e98b49633149be1445af3b34287,
     type: 3}
@@ -82,3 +83,29 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1681037777906013539
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2821166497001276197}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0050869733, y: -0.010176294}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.64, y: 1.28}
+    newSize: {x: 0.5, y: 0.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 2
+    adaptiveTiling: 1
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.48738685, y: 0.4557128}
+  m_EdgeRadius: 0
