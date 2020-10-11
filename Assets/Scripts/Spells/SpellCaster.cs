@@ -4,16 +4,19 @@ using UnityEngine;
 public class SpellCaster : MonoBehaviour
 {
     SpellsHolder spellsHolder;
+    SpellIcons spellIcons;
 
     PlayerOrientation playerOrientation;
     PlayerMemory playerMemory;
     Animator playerAnimator;
 
-    bool[] canCastSpell = new bool[] { true, true, true, true };
+    readonly bool[] canCastSpell = new bool[] { true, true, true, true };
 
     private void Start()
     {
         spellsHolder = GetComponent<SpellsHolder>();
+        spellIcons = FindObjectOfType<SpellIcons>();
+
         playerOrientation = GetComponent<PlayerOrientation>();
         playerMemory = GetComponent<PlayerMemory>();
         playerAnimator = GetComponent<Animator>();
@@ -69,7 +72,11 @@ public class SpellCaster : MonoBehaviour
     IEnumerator ProcessSelectedSpell(Spell selectedSpell)
     {
         Spell currentSpell = selectedSpell;
-        canCastSpell[spellsHolder.IndexOf(currentSpell)] = false;
+        int index = spellsHolder.IndexOf(currentSpell);
+
+        canCastSpell[index] = false;
+        spellIcons.DisableIcon(index);
+
         bool spellSucceeded;
 
         if (currentSpell is PhysicalSpell physicalSpell)
@@ -99,6 +106,8 @@ public class SpellCaster : MonoBehaviour
 
         yield return new WaitForSeconds(currentSpell.timeBetweenCast);
 
+        // Can cast spell
         canCastSpell[spellsHolder.IndexOf(currentSpell)] = true;
+        spellIcons.EnableIcon(index);
     }
 }

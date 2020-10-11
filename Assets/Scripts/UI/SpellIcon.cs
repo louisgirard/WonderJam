@@ -3,25 +3,26 @@ using UnityEngine.UI;
 
 public class SpellIcon : MonoBehaviour
 {
-    [SerializeField] int index = 0;
-    SpellsHolder spellsHolder;
     Image icon;
 
     // Start is called before the first frame update
     void Start()
     {
-        spellsHolder = FindObjectOfType<SpellsHolder>();
         icon = GetComponentInChildren<Image>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateIcon(Spell spell, bool disabled)
     {
-        Spell spell = spellsHolder.GetSpell(index);
         if (spell == null)
         {
             icon.sprite = null;
             icon.color = Color.black;
+        }
+        else if (disabled)
+        {
+            print("disable " + spell);
+            icon.sprite = spell.icon;
+            icon.color = new Color(0.4f,0.4f,0.4f);
         }
         else
         {
