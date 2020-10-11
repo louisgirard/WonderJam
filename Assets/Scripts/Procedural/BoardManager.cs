@@ -55,15 +55,15 @@ public class BoardManager : MonoBehaviour
     public GameObject[] m_wallSprite; // 0 => top, 1=> Rigth, 2=> Left, 3 => Down
     public GameObject[] m_wallCornerSprite;//0=>TopL, 1=>TopR, 2=>DownL, 3=>DownR
     public GameObject[] m_obstaclesSprites;
-    //public GameObject[] m_ennemiSprites;
-    //public Sprite[] m_obstSprite;
     public GameObject m_entrySprite;
     public GameObject m_exitSprite_base;
     public GameObject m_exitSprite_open;
     //public GameObject m_exitSecondSprite;
     public GameObject[] m_objects;
-    private Vector2 m_exit_position;
     public GameObject[] m_enemies;
+    public GameObject[] m_scrolls;
+
+    private Vector2 m_exit_position;
     private GameObject m_player;
     private GameObject m_exit_door;
 
@@ -190,6 +190,8 @@ public class BoardManager : MonoBehaviour
         DisplayObjectAtRandomPosition(m_obstaclesSprites, new Count(5, 9));
         // Objects
         DisplayObjectAtRandomPosition(m_objects, new Count(1, 2));
+        // Scrolls
+        DisplayObjectAtRandomPosition(m_scrolls, new Count(1, 1));
         // Enemies
         int ennemiCount = 2 + (int)Mathf.Log(level, 2f);
         DisplayObjectAtRandomPosition(m_enemies, new Count(ennemiCount, ennemiCount));
@@ -238,5 +240,4 @@ public class BoardManager : MonoBehaviour
             Quaternion.identity,
             environment.transform);
     }
-
 }

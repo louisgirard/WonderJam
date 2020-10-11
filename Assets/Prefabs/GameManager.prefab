@@ -74,6 +74,10 @@ MonoBehaviour:
   - {fileID: 815132640130853493, guid: ad70241fa59a946468932f2acd413e01, type: 3}
   m_enemies:
   - {fileID: 577264880862478496, guid: 1eb90378000d32e48ba30dcaa17d1f19, type: 3}
+  m_scrolls:
+  - {fileID: 8086292194344628611, guid: d0a6f7fe73b7e084097e0702fc66ad21, type: 3}
+  - {fileID: 8086292194344628611, guid: 8038b85767468ea47852e9aef5e2d9a0, type: 3}
+  - {fileID: 8086292194344628611, guid: 5cccf0647d6ec4c4abb5fc0ab2ff8bb4, type: 3}
 --- !u!114 &896096151
 MonoBehaviour:
   m_ObjectHideFlags: 0
