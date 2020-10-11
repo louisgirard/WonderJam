@@ -3,6 +3,7 @@
 public class HealthPotion : MonoBehaviour
 {
     [SerializeField] float health = 10f;
+    [SerializeField] ParticleSystem animationParticles;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -12,7 +13,7 @@ public class HealthPotion : MonoBehaviour
             if (playerHealth.CanHeal())
             {
                 playerHealth.Heal(health);
-                // Heal Animation
+                Instantiate(animationParticles, collision.transform.position, Quaternion.identity, collision.transform);
                 Destroy(gameObject);
             }
         }

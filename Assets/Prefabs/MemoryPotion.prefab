@@ -122,3 +122,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 1
+  animationParticles: {fileID: 4139626892462970515, guid: 289ff87be8ea0f54ba0a03aefbce74d8,
+    type: 3}

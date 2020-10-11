@@ -3,6 +3,7 @@
 public class MemoryPotion : MonoBehaviour
 {
     [SerializeField] float memory = 1f;
+    [SerializeField] ParticleSystem animationParticles;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -12,7 +13,7 @@ public class MemoryPotion : MonoBehaviour
             if (playerMemory.CanHeal())
             {
                 playerMemory.Heal(memory);
-                // Heal Animation
+                Instantiate(animationParticles, collision.transform.position, Quaternion.identity, collision.transform);
                 Destroy(gameObject);
             }
         }
