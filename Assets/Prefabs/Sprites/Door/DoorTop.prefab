@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6984632395004812499}
   - component: {fileID: 6580946144067991407}
   - component: {fileID: 5554855138723373427}
+  - component: {fileID: -4444599089762932424}
   m_Layer: 0
   m_Name: DoorTop
   m_TagString: Untagged
@@ -70,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 2885532363508030751, guid: 84a46e98b49633149be1445af3b34287,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -109,3 +110,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0015755, y: 0.99769986}
   m_EdgeRadius: 0
+--- !u!114 &-4444599089762932424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2394101142477222274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71036e30f1073c54297bc36cac926f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

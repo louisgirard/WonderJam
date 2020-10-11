@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     private BoardManager m_boardScript;
     private int m_level = 1;
     private List<EnemyHealth> m_enemies;
-    public float m_levelStartDelay = 2f;
+    public float m_levelStartDelay = 1f;
     private GameObject m_levelImage;
     private bool m_isSetUp = false;
     bool doorOpened = false;
@@ -81,8 +81,6 @@ public class GameManager : MonoBehaviour
             m_boardScript.OpenDoor();
             doorOpened = true;
         }
-        
-        //GameOver
     }
 
     public void GameOver()

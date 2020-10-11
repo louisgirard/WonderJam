@@ -19,9 +19,8 @@ public class PlayerHealth : MonoBehaviour
         healthBar.UpdateSlider(health, maxHealth);
         if(health == 0)
         {
-            print("dead");
+            GameManager.m_instance.GameOver();
         }
-        print("health = " + health);
     }
 
     public bool CanHeal()

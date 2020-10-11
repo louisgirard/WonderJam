@@ -74,15 +74,6 @@ public class BoardManager : MonoBehaviour
         environment = GameObject.Find("Environment");
     }
 
-    private void Update()
-    {
-        Vector2 exit_position = new Vector2(m_exit_position.x, m_exit_position.y);
-        if(Vector2.Distance(exit_position, m_player.transform.position) <= 1f)
-        {
-            GameManager.m_instance.LoadNextLevel();
-        }
-    }
-
     //TODO : Ajout des portes + fenetre
 
     //Positions des cases pouvant etre utilisées pour placer un element => impossible de mettre deux elemeents sur la meme case
@@ -213,14 +204,7 @@ public class BoardManager : MonoBehaviour
         //Instanciation du joueur
         if (level == 1)
         {
-            m_player = Instantiate(
-                player,
-                new Vector2(
-                       entry_x,
-                       entry_y + 1
-                        ),
-                Quaternion.identity
-                );
+            m_player = Instantiate(player, new Vector2(entry_x, entry_y + 1), Quaternion.identity);
         }
         else
         {
@@ -228,8 +212,7 @@ public class BoardManager : MonoBehaviour
         }
 
         //Instanciation de la sortie
-        m_exit_position = new Vector2(Random.Range(
-                     1, m_numberColumns - 2), m_numberRows);
+        m_exit_position = new Vector2(Random.Range(1, m_numberColumns - 2), m_numberRows);
         m_exit_door = Instantiate(
             m_exitSprite_base,
             new Vector2(m_exit_position.x, m_exit_position.y),

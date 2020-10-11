@@ -86,6 +86,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0acf16859f6a822439552516ffe011aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_levelStartDelay: 2
+  m_levelStartDelay: 1
   playerPrefab: {fileID: 3749985317117988090, guid: 1d31cfac47d23c14a808dd5427a7cc2c,
     type: 3}
