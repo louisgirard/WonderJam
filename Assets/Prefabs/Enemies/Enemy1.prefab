@@ -17,6 +17,11 @@ PrefabInstance:
       propertyPath: range
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: -1434664353182881445, guid: fefd59dde53524b47b414baec8a1343e,
+        type: 3}
+      propertyPath: speed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3373267374501624451, guid: fefd59dde53524b47b414baec8a1343e,
         type: 3}
       propertyPath: m_Controller
@@ -103,6 +108,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3433018357106447338, guid: fefd59dde53524b47b414baec8a1343e,
+        type: 3}
+      propertyPath: radius
+      value: 1.29
+      objectReference: {fileID: 0}
     - target: {fileID: 4842385618580332457, guid: fefd59dde53524b47b414baec8a1343e,
         type: 3}
       propertyPath: maxHealth
@@ -148,5 +158,6 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.newSize.y
       value: 3.48
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -1434664353182881445, guid: fefd59dde53524b47b414baec8a1343e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fefd59dde53524b47b414baec8a1343e, type: 3}

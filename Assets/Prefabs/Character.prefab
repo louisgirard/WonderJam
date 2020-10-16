@@ -290,8 +290,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88332bd64154ca3468ab16ea8731c862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxMemory: 10
-  timeBetweenLost: 2
+  maxMemory: 20
+  timeBetweenLost: 4
 --- !u!114 &135102932217919635
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -221,6 +221,8 @@ public class BoardManager : MonoBehaviour
             Quaternion.identity,
             environment.transform);
 
+        // Recalculate Graph grid
+        AstarPath.active.Scan();
     }
 
     private void DestroyPreviousScene()
